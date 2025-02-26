@@ -57,18 +57,18 @@ public class TestMagicArray {
         // Homework
 
         // Тест конструктора, принимающего обычный массив
-        int[] initialArray = {1, 2, 3, 4, 5, 2, 6, 2};
+        int[] initialArray = {1, 3, 2, 4, 5, 3, 6, 3};
 
         MagicArray magicArray = new MagicArray(initialArray);   // принимаем валидный массив
-        System.out.println("MagicArray for {1, 2, 3, 4, 5, 2, 6, 2}: " + magicArray);
+        System.out.println("MagicArray for {1, 3, 2, 4, 5, 3, 6, 3}: " + magicArray);
         MagicArray magicArrayWithNull = new MagicArray(null); // принимаем битый массив
         System.out.println("MagicArray for null (created default): " + magicArrayWithNull);
 
         // Тест индекса последнего вхождения
         int lastIndexOf100 = magicArray.lastIndexOf(100);   // такого элемента нет
         System.out.println("Index of last occurrence of 100 (not found): " + lastIndexOf100);
-        int lastIndexOf2 = magicArray.lastIndexOf(2);   // а такой элемент есть
-        System.out.println("Index of last occurrence of 2: " + lastIndexOf2);
+        int lastIndexOf3 = magicArray.lastIndexOf(3);   // а такой элемент есть
+        System.out.println("Index of last occurrence of 3: " + lastIndexOf3);
 
 
         // Тест удаления элемента по значению:
@@ -76,9 +76,9 @@ public class TestMagicArray {
         System.out.println("Removed occurrence of 100 (not found): " + removedNotFound);
         System.out.println("MagicArray after trying to remove 100: " + magicArray);
 
-        boolean removed = magicArray.removeByValue(2);  // а такой элемент есть
-        System.out.println("Removed first occurrence of 2: " + removed);
-        System.out.println("MagicArray after removing first occurrence of 2: " + magicArray);
+        boolean removed = magicArray.removeByValue(3);  // а такой элемент есть
+        System.out.println("Removed first occurrence of 3: " + removed);
+        System.out.println("MagicArray after removing first occurrence of 3: " + magicArray);
 
     }
 }
