@@ -34,7 +34,7 @@ public class MagicArrayIncaps {
     // public будут только те методы, которые обеспечивают минимально необходимый интерфейс для работы с классом извне.
 
     // Добавление в массив одного элемента
-    private void add(int value) {
+    public void add(int value) {
 
         // Проверка! Есть ли свободное место во внутреннем массиве
         // Если места нет - нужно добавить место
@@ -72,7 +72,7 @@ public class MagicArrayIncaps {
     }
 
     // Добавление в массив нескольких элементов
-    private void add(int... numbers) {
+    public void add(int... numbers) {
         // с numbers я могу обращаться точно также, как со ссылкой на массив int
 //        System.out.println("Принял несколько int: " + numbers.length);
 //        System.out.println(Arrays.toString(numbers));
@@ -120,8 +120,8 @@ public class MagicArrayIncaps {
         // Todo Поправить обработку некорректного индекса
     }
 
-    // Удалить элемент по индексу. Вернуть старое значение - private, используется только для работы других методов
-    private int remove(int index) {
+    // Удалить элемент по индексу
+    public int remove(int index) {
         /*
         1. Проверка индекса на валидность
         2. Удалить значение по индексу
