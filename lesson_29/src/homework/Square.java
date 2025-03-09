@@ -3,9 +3,21 @@ package homework;
 public class Square extends Shape {
     private double side;
 
-    public Square(double side) {
+    private Square(double side) {
         super("Square");
-        setSide(side);
+        this.side = side;
+    }
+
+    public static Square makeSquare(double side) {
+        if (sideCheck(side)) {
+            return new Square(side);
+        }
+        System.out.println("Error - can't make square with size <= 0");
+        return null;
+    }
+
+    public static boolean sideCheck(double side) {
+        return side > 0;
     }
 
     public double getSide() {
@@ -13,11 +25,11 @@ public class Square extends Shape {
     }
 
     public void setSide(double side) {
-        if (side <= 0) {
-            System.out.println(formatId() + " Error, side <= 0!");
-            return;
+        if (sideCheck(side)) {
+            this.side = side;
+            calculateArea();
+            calculatePerimeter();
         }
-        this.side = side;
     }
 
     @Override

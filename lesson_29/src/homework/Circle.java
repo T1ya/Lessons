@@ -3,9 +3,21 @@ package homework;
 public class Circle extends Shape {
     private double radius;
 
-    public Circle(double radius) {
+    private Circle(double radius) {
         super("Circle");
         setRadius(radius);
+    }
+
+    public static Circle makeCircle(double radius) {
+        if (radiusCheck(radius)) {
+            return new Circle(radius);
+        }
+        System.out.println("Error - can't make circle with radius <= 0");
+        return null;
+    }
+
+    public static boolean radiusCheck(double radius) {
+        return radius > 0;
     }
 
     public double getRadius() {
@@ -13,12 +25,11 @@ public class Circle extends Shape {
     }
 
     public void setRadius(double radius) {
-        if (radius <= 0){
-
-            System.out.println(formatId() + " Error, radius <= 0!");
-            return;
+        if (radiusCheck(radius)){
+            this.radius = radius;
+            calculateArea();
+            calculatePerimeter();
         }
-        this.radius = radius;
     }
 
     @Override
