@@ -14,5 +14,6 @@ public class PaymentSystemApp {
         eWallet.depositTransfer(100);
         eWallet.withdrawMoney(50);
         eWallet.checkBalance();
+
     }
 }

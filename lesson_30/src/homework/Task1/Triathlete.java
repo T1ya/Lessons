@@ -1,6 +1,7 @@
 package homework.Task1;
 
 public class Triathlete implements Swimmer, Runner {
+
     private final String name;
 
     public Triathlete() {
