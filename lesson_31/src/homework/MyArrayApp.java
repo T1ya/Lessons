@@ -3,7 +3,7 @@ package homework;
 public class MyArrayApp {
     public static void main(String[] args) {
         MyArrayList<String> myList = new MyArrayList<>();
-        System.out.println("List is empty? " + myList.isEmpty());
+        System.out.println("myList is empty? " + myList.isEmpty());
         myList.add("do");
         myList.add("re");
         myList.add("mi");
@@ -18,7 +18,7 @@ public class MyArrayApp {
         System.out.println("Contains \"sol\"? - " + myList.contains("sol"));
         myList.remove(5);
         System.out.println(myList);
-        System.out.println("List is empty? " + myList.isEmpty());
+        System.out.println("myList is empty? " + myList.isEmpty());
 
         myList.set(13, "sol");
         myList.set(4, "sol");

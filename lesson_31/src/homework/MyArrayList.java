@@ -6,12 +6,14 @@ public class MyArrayList<T> implements MyList<T> {
     private T[] array;
     private int cursor; // по умолчанию = 0
 
+    @SuppressWarnings("unchecked")
     public MyArrayList() {
         // Стирание типов - невозможно создать объект типа Т!
         // Поэтому в конструкторе используют такой вот "костыль"
         this.array = (T[]) new Object[10];
     }
 
+    @SuppressWarnings("unchecked")
     public MyArrayList(T[] array) {
         if (array == null || array.length == 0) {
             // проверка переданного массива. В случае если передан пустой массив, создадим массив по умолчанию
@@ -36,6 +38,7 @@ public class MyArrayList<T> implements MyList<T> {
         cursor++;
     }
 
+    @SuppressWarnings("unchecked")
     private void expandArray() {
         System.out.println("Расширяем внутренний массив! Курсор = " + cursor);
         T[] newArray = (T[]) new Object[array.length * 2];
@@ -142,7 +145,7 @@ public class MyArrayList<T> implements MyList<T> {
         return false;
     }
 
-    // Массив, состоящий из элементов магического массива
+    @SuppressWarnings("unchecked")
     public T[] toArray() {
         T[] result = (T[]) new Object[cursor];
         for (int i = 0; i < cursor; i++) {

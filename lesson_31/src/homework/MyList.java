@@ -1,8 +1,6 @@
 package homework;
 
 public interface MyList<T> {
-
-
     /**
      * Добавить элемент
      * @param value
