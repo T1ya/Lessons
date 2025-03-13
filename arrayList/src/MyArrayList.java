@@ -1,8 +1,6 @@
-package homework;
-
 import java.util.Iterator;
 
-public class MyArrayList<T> implements MyList<T>, Iterable<T> {
+public class MyArrayList<T> implements MyList<T> {
     private T[] array;
     private int cursor; // по умолчанию = 0
 
@@ -172,7 +170,7 @@ public class MyArrayList<T> implements MyList<T>, Iterable<T> {
     // должны вернуть класс типа Т, который имплементирует итератор
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new MyIterator();
     }
 }
 
