@@ -5,9 +5,11 @@ import java.util.Calendar;
 public class Person {
     public String email;
     public String password;
+    private static final String SYMBOLS = "\"!%$@&*()[],.-\"";
+    private static final int PASS_MIN_LENGTH = 8;
 
     public Person(String password, String email) {
-        this.password = password;
+        setPassword(password);
         setEmail(email);
     }
 
@@ -57,7 +59,41 @@ public class Person {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        if (passwordIsValid(password)) this.password = password;
+    }
+
+    private boolean passwordIsValid(String password) {
+        //проверка на длину пароля в 8 символов. И на null
+        if (password == null || password.length() < PASS_MIN_LENGTH)
+        {
+            System.out.println("Oшибка - длина пароля должна быть больше 8 символов.");
+            return false;
+        }
+
+        boolean hasDigit = false;//Должна быть мин 1 цифра
+        boolean hasLowerCase = false;//Должна быть мин 1 маленькая буква -> Character.isLowerCase()
+        boolean hasUpperCase = false;//Должна быть мин 1 большая буква
+        boolean hasSymbol = false;//Должна быть мин 1 специальный символ: "!%$@&*()[],.-"
+
+        for(char c: password.toCharArray()) {
+            if (Character.isDigit(c)) hasDigit = true;
+            if (Character.isLowerCase(c)) hasLowerCase = true;
+            if (Character.isUpperCase(c)) hasUpperCase = true;
+            if (SYMBOLS.indexOf(c) != -1) hasSymbol = true; //символы я вынес в константу SYMBOLS
+           //пароль валиден? нет смысла продолжать проверку
+           if (hasDigit && hasLowerCase && hasUpperCase && hasSymbol){
+               return true;
+           }
+        }
+        //добавим вывод для неверного пароля
+        StringBuilder sb = new StringBuilder("Ошибка - пароль должен содержать как минимум");
+        if (!hasDigit) sb.append(" одну цифру;");
+        if (!hasLowerCase) sb.append(" одну строчную букву;");
+        if (!hasUpperCase) sb.append(" одну заглавную букву;");
+        if (!hasSymbol) sb.append(" один спецсимвол: ").append(SYMBOLS);
+        sb.append(".");
+        System.out.println(sb.toString());
+        return false;
     }
 
     @Override
