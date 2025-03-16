@@ -1,8 +1,11 @@
+package homework;
+
 public class Person {
     public String email;
     public String password;
-    private static final String SYMBOLS = "\"!%$@&*()[],.-\"";
+    private static final String SYMBOLS = "\"!%$@&*()[],\"";
     private static final int PASS_MIN_LENGTH = 8;
+    private static final int EMAIL_MIN_LENGTH = 6;
 
     public Person(String password, String email) {
         setPassword(password);
@@ -20,34 +23,30 @@ public class Person {
     }
 
     private boolean isEmailValid(String email) {
-        //@ check
-        int indexAt = email.indexOf('@');   //mail has @
-        int lastAt = email.lastIndexOf('@');    //mail has only 1 @
-        if (indexAt == -1 || indexAt != lastAt) return false;
-        //@. check
-        int dotAfterAt = email.indexOf('.', indexAt + 1);
-        if (dotAfterAt == -1) return false;
+        //проверка на длину email
+        if (email == null || email.length() < EMAIL_MIN_LENGTH) return false;
+        // Проверка '@'
+        int indexAt = email.indexOf('@'); // Есть только один символ '@'
+        if (indexAt == -1 || indexAt != email.lastIndexOf('@')) return false;
+        // Перед '@' должна быть минимум одна буква
+        if (!Character.isLetter(email.charAt(0))) return false;
+        // После '@' должна быть минимум одна буква
+        if (!Character.isLetter(email.charAt(indexAt + 1))) return false;
+        // Проверка доменной части
+        int dotAfterAt = email.lastIndexOf('.');
+        if (dotAfterAt == -1 || dotAfterAt >= email.length() - 2) return false;
+        // Проверка двух точек подряд
+        if (email.contains("..")) return false;
 
-        //after dot there is 2 or more symbols
-        int lastDotIndex = email.indexOf('.');
-        if (lastDotIndex >= email.length() - 2) return false;
-
-        //special symbols check
-        for (char c : email.toCharArray()) {
-            boolean isPass = Character.isAlphabetic(c)
-                    || Character.isDigit(c)
-                    || c == '-'
-                    || c == '.'
-                    || c == '_'
-                    || c == '@';
+        for (int i = 0; i < email.length(); i++) {
+            char c = email.charAt(i);
+            //проверка на валидность символов
+            boolean isPass = Character.isAlphabetic(c) || Character.isDigit(c) || c == '-' || c == '.' || c == '_' || c == '@';
             if (!isPass) return false;
+            //после последнего символа '.' должны идти только буквы
+            if (i > dotAfterAt && !Character.isAlphabetic(c)) return false;
         }
-
-        // before @ should be at least 1 symbol
-        // 1-st symbol should be letter
-        if (Character.isLetter(email.charAt(0))) return true;
-
-        return false;
+        return true;
     }
 
     public String getPassword() {
@@ -60,8 +59,7 @@ public class Person {
 
     private boolean passwordIsValid(String password) {
         //проверка на длину пароля в 8 символов. И на null
-        if (password == null || password.length() < PASS_MIN_LENGTH)
-        {
+        if (password == null || password.length() < PASS_MIN_LENGTH) {
             System.out.println("Oшибка - длина пароля должна быть больше 8 символов.");
             return false;
         }
@@ -71,15 +69,15 @@ public class Person {
         boolean hasUpperCase = false;//Должна быть мин 1 большая буква
         boolean hasSymbol = false;//Должна быть мин 1 специальный символ: "!%$@&*()[],.-"
 
-        for(char c: password.toCharArray()) {
+        for (char c : password.toCharArray()) {
             if (Character.isDigit(c)) hasDigit = true;
             if (Character.isLowerCase(c)) hasLowerCase = true;
             if (Character.isUpperCase(c)) hasUpperCase = true;
             if (SYMBOLS.indexOf(c) != -1) hasSymbol = true; //символы я вынес в константу SYMBOLS
-           //пароль валиден? нет смысла продолжать проверку
-           if (hasDigit && hasLowerCase && hasUpperCase && hasSymbol){
-               return true;
-           }
+            //пароль валиден? нет смысла продолжать проверку
+            if (hasDigit && hasLowerCase && hasUpperCase && hasSymbol) {
+                return true;
+            }
         }
         //добавим вывод для неверного пароля
         StringBuilder sb = new StringBuilder("Ошибка - пароль должен содержать как минимум");
@@ -94,9 +92,6 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
-                "email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return "Person{" + "email='" + email + '\'' + ", password='" + password + '\'' + '}';
     }
 }
