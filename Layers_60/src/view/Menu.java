@@ -73,7 +73,7 @@ public class Menu {
 
             if (input == 0) break;
 
-            handleUserMenu(int input);
+            handleUserMenu(input);
         }
     }
 
