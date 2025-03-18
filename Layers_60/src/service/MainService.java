@@ -12,7 +12,7 @@ public interface MainService {
 
     boolean loginUser(String email, String password);
 
-    void logoutUser(String email, String password);
+    void logoutUser();
 
     boolean takeCar(int carId);
 
@@ -23,4 +23,5 @@ public interface MainService {
     MyList<Car> getFreeCar();
 
     void deleteCarById(int id);
+    User getActiveUser();
 }

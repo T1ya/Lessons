@@ -1,7 +1,9 @@
 package view;
 
+import model.Car;
 import model.User;
 import service.MainService;
+import utils.MyList;
 
 import java.util.Scanner;
 
@@ -81,6 +83,10 @@ public class Menu {
         System.out.println("Press Enter to proceed");
         scanner.nextLine();
     }
+
+    private void showCarList(MyList<Car> cars) {
+        System.out.println(cars);
+    }
     // должен передать полученные данные в сервисный слой!
     void handleUserMenu(int input) {
         switch (input) {
@@ -92,6 +98,7 @@ public class Menu {
                 3 - получить ответ от сервисного слоя - прошёл логин или нет
                 4 - передать ответ пользователю
                  */
+                //TODO
                 break;
             case 2:
                 /*
@@ -114,6 +121,15 @@ public class Menu {
                 else {
                     System.out.println("Регистрация пользователя завершена");
                     waitRead();
+                }
+                break;
+            case 3:
+                if (service.getActiveUser() == null) {
+                    System.out.println("No active user in system!");
+                }
+                else {
+                    service.logoutUser();
+                    System.out.println("Logging out");
                 }
                 break;
         }

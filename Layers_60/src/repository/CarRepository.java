@@ -18,7 +18,7 @@ public interface CarRepository {
     // Read
     MyList<Car> getAllCars();                          //get cars list
     Car getCarById(int id);                                //get car by its id
-
+    Car getCarByModel(String model);
     // Update
     void saveCar(Car car);  //Update car state
 
