@@ -1,6 +1,7 @@
 package view;
 
 import model.Car;
+import model.Role;
 import model.User;
 import service.MainService;
 import utils.MyList;
@@ -48,8 +49,11 @@ public class Menu {
                 //TODO - show car menu
                 break;
             case 2:
-                //TODO - show user menu
-                showUserMenu();
+                User active = service.getActiveUser();
+                if (active.getRole() == Role.ADMIN) {
+                    //TODO - show user menu
+                    showUserMenu();
+                }
                 break;
             case 3:
                 //TODO - show admin menu

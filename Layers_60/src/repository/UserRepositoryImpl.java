@@ -1,11 +1,13 @@
 package repository;
 
+import model.Role;
 import model.User;
 import utils.MyArrayList;
 
 public class UserRepositoryImpl implements UserRepository{
     //храним список юзеров в переменной
     private final MyArrayList<User> users;
+    private Role role;
 
     public UserRepositoryImpl() {
         users = new MyArrayList<>();
@@ -14,7 +16,9 @@ public class UserRepositoryImpl implements UserRepository{
 
     private void addUsers() {
         User admin = new User("1", "1");
+        admin.setRole(Role.ADMIN);
         User user = new User("2", "2");
+        user.setRole(Role.USER);
         users.addAll(admin, user);
     }
 

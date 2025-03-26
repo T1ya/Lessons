@@ -61,7 +61,7 @@ public class MainServiceImpl implements MainService {
          */
         User user = userRepository.getUserByEmail(email);   //1
         if (user == null) return false; //2
-        if (user.getEmail().equals(password)) {
+        if (user.getPassword().equals(password)) {
             activeUser = user;  //3
             return true;    //4
         }

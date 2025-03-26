@@ -10,6 +10,12 @@ public class User {
     private String password;
     private final MyList<Car> userCars;
 
+    public Role getRole() {
+        return role;
+    }
+
+    private Role role;
+
     public User(String email, String password) {
         this.email = email;
         this.password = password;
@@ -54,5 +60,8 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(email, password);
+    }
+
+    public void setRole(Role role) {
     }
 }
