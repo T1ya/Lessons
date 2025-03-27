@@ -1,4 +1,4 @@
-package homework.task1;
+package homework;
 
 public class Sportsman implements Comparable<Sportsman>{
     private String name;

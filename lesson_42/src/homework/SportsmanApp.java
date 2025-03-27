@@ -1,7 +1,6 @@
-package homework.task1;
+package homework;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 public class SportsmanApp {
     public static void main(String[] args) {
