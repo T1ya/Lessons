@@ -27,8 +27,8 @@ public class Library {
     }
 
     public void deleteBook(Book book) {
-        for (Book b: this.books) {
-            if(b.equals(book)) {
+        for (Book b : this.books) {
+            if (b.equals(book)) {
                 this.books.remove(book);
             }
         }
