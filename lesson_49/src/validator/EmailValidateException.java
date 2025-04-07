@@ -16,6 +16,6 @@ public class EmailValidateException extends Exception{
 
     @Override
     public String getMessage() {
-        return "Email validate exception " + super.getMessage();
+        return "Email validate exception: " + super.getMessage();
     }
 }
